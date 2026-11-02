@@ -1,0 +1,396 @@
+[
+ {
+  "slug": "jet-lag-criancas",
+  "title": "Jet lag em crianças: como ajudá-las a se adaptar ao fuso",
+  "description": "Jet lag com crianças e bebês: como mudar horários de sono e refeições, usar a luz e deixar a viagem mais tranquila, com dicas práticas e prudentes.",
+  "h1": "Jet lag com crianças e bebês: como lidar sem estresse",
+  "kicker": "Famílias em viagem",
+  "intro": "O jet lag nas crianças é o mesmo descompasso entre relógio biológico e hora local que você sente, mas se nota mais porque os pequenos têm ritmos mais rígidos e menos capacidade de compensar. Não existe fórmula mágica: funcionam horários regulares, luz na hora certa e um pouco de paciência. Para qualquer suplemento ou remédio, a referência é sempre o pediatra.",
+  "sections": [
+   {
+    "h2": "Por que as crianças sentem mais",
+    "paragraphs": [
+     "Uma criança tem horários de sono, refeições e sonecas muito estruturados. Quando a hora local muda de repente, o corpo dela continua pedindo sono e fome no horário de casa. O resultado são despertares à noite, birras à tarde e fome nos momentos errados.",
+     "Nos bebês, sobretudo nos primeiros meses, o ritmo dia-noite ainda está se formando. Para eles o fuso pesa menos como conceito, mas a mudança de ambiente e de rotina pode deixar as noites irregulares. Nesse caso o objetivo realista não é a perfeição, e sim voltar aos poucos a uma rotina reconhecível."
+    ]
+   },
+   {
+    "h2": "Antes da partida",
+    "paragraphs": [
+     "Se o fuso é de poucas horas e seu filho tem uma rotina estável, você pode mudar sono e despertar em cerca de 1 hora por dia nos 1-3 dias antes de partir. Rumo a leste adianta-se, rumo a oeste atrasa-se. Para mudanças pequenas, ou se a rotina já está cansativa, você também pode optar por não fazer isso e se concentrar na chegada.",
+     "Com a calculadora do Sfuso você vê quantas horas a hora muda e escolhe se já parte com horários deslocados ou se adapta no local."
+    ],
+    "list": [
+     "Mantenha os objetos do sono de sempre: bichinho de pelúcia, paninho, saco de dormir.",
+     "Leve lanches e uma refeição simples, para não depender dos horários de bordo.",
+     "Se puder, escolha voos que cheguem num horário em que a criança consiga ficar acordada até a noite."
+    ]
+   },
+   {
+    "h2": "No voo e na chegada",
+    "paragraphs": [
+     "Se o voo é noturno, deixe a criança dormir quando tiver sono e não a acorde à força. Evite, por outro lado, que ela pule totalmente o descanso e chegue exausta. Na chegada, passe o tempo ao ar livre: a luz do dia é o sinal mais forte para ajudar o relógio biológico a se deslocar.",
+     "Em geral se recupera em cerca de 1 dia por hora de fuso se não se faz nada, mas com luz e horários regulares o tempo diminui. Evite sonecas longas: um descanso curto, até meados da tarde, pode bastar para chegar à noite sem desabar às 17h."
+    ]
+   },
+   {
+    "h2": "As primeiras noites",
+    "paragraphs": [
+     "Mantenha a rotina de boa-noite idêntica à de casa: banho, historinha, luzes baixas. Mudam os horários, não os gestos. Se a criança acordar no meio da noite pronta para brincar, deixe o quarto escuro e o clima calmo, sem telas nem brinquedos agitados.",
+     "De manhã, abra cortinas e janelas e leve a criança para fora assim que possível. Ofereça as refeições nos horários locais, mesmo que ela não esteja com muita fome: os ritmos de fome acompanham os do sono e se alinham juntos. Evite dar melatonina ou outros suplementos por conta própria: consulte antes o pediatra."
+    ]
+   },
+   {
+    "h2": "Sinais que não se deve ignorar",
+    "paragraphs": [
+     "Alguns dias de irritabilidade, sono interrompido e apetite irregular são normais. Mas se a criança tiver febre, vômito, dor ou um mal-estar que não passa, o motivo pode não ser o fuso: nesse caso procure o pediatra ou um médico local.",
+     "Lembre-se também de que você é o ponto de referência dela. Se mantiver a calma e a rotina, fica mais fácil para ela reencontrar o equilíbrio. Evite mudar coisas demais ao mesmo tempo e aceite que as primeiras noites não serão perfeitas: em geral melhoram em poucos dias."
+    ]
+   }
+  ],
+  "faq": [
+   {
+    "q": "Quanto dura o jet lag nas crianças?",
+    "a": "Depende do número de fusos e do sentido da viagem, mas como estimativa geral se recupera em cerca de 1 dia por hora de fuso se não se faz nada. Horários regulares e muita luz natural durante o dia ajudam a encurtar o prazo. Cada criança é diferente."
+   },
+   {
+    "q": "Posso dar melatonina ao meu filho contra o jet lag?",
+    "a": "Não dê por conta própria. As regras sobre a melatonina mudam de país para país e, para crianças, é preciso o parecer do pediatra, que avalia idade, motivo e conveniência. Para muitos pequenos bastam luz natural, horários regulares e uma rotina de boa-noite igual à de casa."
+   },
+   {
+    "q": "Vale a pena mudar os horários da criança antes de partir?",
+    "a": "Se o fuso é grande e a rotina é estável, você pode mudar sono e despertar em cerca de 1 hora por dia nos 1-3 dias antes da viagem. Se a mudança é pequena ou a criança é muito pequena, muitas vezes é mais simples se adaptar direto na chegada."
+   }
+  ],
+  "related_tool": "calcolatore"
+ },
+ {
+  "slug": "voos-noturnos",
+  "title": "Voo noturno e jet lag: como dormir e chegar descansado",
+  "description": "Como lidar com voos noturnos (red-eye): dormir a bordo, escolher o horário certo, evitar café e telas e chegar com o mínimo de jet lag possível.",
+  "h1": "Voos noturnos: como dormir a bordo e limitar o jet lag",
+  "kicker": "Voos noturnos",
+  "intro": "Um voo noturno, também chamado de red-eye, é um voo que decola à noite e pousa na manhã seguinte, e convém tratá-lo como uma noite de sono a proteger. O jet lag depende dos fusos que você cruza, mas a qualidade do sono a bordo decide como você se sente na chegada. Com algumas escolhas práticas você dorme mais e chega menos cansado.",
+  "sections": [
+   {
+    "h2": "Entender o que acontece com o seu corpo",
+    "paragraphs": [
+     "O mínimo da temperatura corporal ocorre cerca de 2 horas antes do seu despertar habitual: é o momento em que o corpo quer dormir mais. Se a sua noite no voo passa por esse ponto, o sono será mais profundo. Já se o voo leva você rumo a leste, o amanhecer chega cedo e as horas de escuro diminuem.",
+     "Por exemplo, saindo de São Paulo rumo ao Havaí (−7 horas), a hora local fica para trás: lá o voo de dia é mais comum. Rumo a leste, como Dubai (+7), um voo da noite faz você chegar quando para o seu corpo ainda é madrugada."
+    ]
+   },
+   {
+    "h2": "Antes de embarcar",
+    "paragraphs": [
+     "Chegue ao aeroporto já descansado. Se o voo sai tarde, não chegue ao fim de um dia estafante. Faça uma refeição leve, evite álcool e tome o último café pelo menos 6 horas antes da hora em que quer adormecer.",
+     "Escolha, se puder, um lugar onde se apoiar: janela para a cabeça, ou corredor se você levanta com frequência. Ajuste o relógio para o fuso do destino e comece a pensar naquele horário."
+    ],
+    "list": [
+     "Leve máscara para os olhos e tampões ou fones com cancelamento de ruído.",
+     "Leve algo quente: a bordo costuma fazer frio.",
+     "Baixe um programa ou música relaxante, sem telas luminosas antes de dormir."
+    ]
+   },
+   {
+    "h2": "Dormir no voo",
+    "paragraphs": [
+     "Procure adormecer o quanto antes depois da refeição, sem esperar o último serviço de bordo. Quanto mais longo e contínuo o sono, melhor. Evite telas luminosas na hora anterior: a luz azul do celular é exatamente o sinal que diz ao cérebro para ficar acordado.",
+     "Se o voo é curto e a noite reduzida, um sono interrompido é normal. Não force: descansar no escuro com os olhos fechados ajuda de qualquer forma. Se o horário do pouso coincide com a manhã local, resista à tentação de continuar dormindo até tarde."
+    ]
+   },
+   {
+    "h2": "Depois do pouso",
+    "paragraphs": [
+     "Assim que chegar, saia ao ar livre e procure a luz natural. Se você pousa de manhã, a luz ajuda a atrasar o relógio rumo a oeste; rumo a leste ajuda se vier depois do seu ponto de mínimo. Se precisar mesmo descansar, tire uma soneca de 20-30 minutos, nunca depois das 16h locais.",
+     "Depois fique acordado até um horário razoável à noite. A calculadora do Sfuso mostra, com base no horário de acordar e no fuso, quando buscar a luz e quando evitá-la nos primeiros dias."
+    ]
+   },
+   {
+    "h2": "Quando vale escolher um voo noturno",
+    "paragraphs": [
+     "Um voo noturno faz sentido se poupa um dia de trabalho ou se você pousa de manhã com o dia inteiro pela frente. Rumo a oeste funciona bem: você pousa e pode ficar ao ar livre até a noite, ajudando o corpo a atrasar. Rumo a leste, por outro lado, o sono no voo é mais curto e a chegada cai quando para você ainda é madrugada.",
+     "Se puder escolher, para o leste prefira uma chegada entre 12h e 16h. Se não for possível, aceite um dia de transição: luz de manhã no horário local, nenhuma decisão importante e uma noite tranquila. A calculadora do Sfuso pode mostrar o efeito do horário de chegada no plano dos primeiros dias."
+    ]
+   }
+  ],
+  "faq": [
+   {
+    "q": "É melhor dormir ou ficar acordado num voo noturno?",
+    "a": "Depende do horário no destino. Se você pousa de manhã no horário local, dormir no voo é uma vantagem, porque chega com mais energia e pode passar o dia ao ar livre. Vale mirar um sono de verdade, no escuro e sem telas, em vez de ficar acordado e desabar logo após a chegada."
+   },
+   {
+    "q": "Posso tomar café antes de um voo noturno?",
+    "a": "Pode, mas o último café deve ser pelo menos 6 horas antes da hora em que você quer adormecer, não antes da decolagem. Depois, melhor água ou chás de ervas. A cafeína permanece em circulação por muito tempo e deixa o sono no voo mais leve, fragmentado e menos reparador."
+   },
+   {
+    "q": "Quanto pode durar uma soneca na chegada?",
+    "a": "No máximo 20-30 minutos e não depois das 16h no horário local. Um descanso mais longo ou mais tarde corre o risco de tirar seu sono à noite e de atrasar a adaptação ao novo fuso. Programe um despertador para não passar do limite e saia logo à luz natural."
+   }
+  ],
+  "related_tool": "calcolatore"
+ },
+ {
+  "slug": "viagens-de-trabalho",
+  "title": "Jet lag em viagens de trabalho: curtas ou longas?",
+  "description": "Jet lag em viagens de trabalho: em viagens de 1-3 dias convém ficar no horário de casa, nas longas é preciso se adaptar. Veja como decidir.",
+  "h1": "Jet lag em viagens de trabalho: ficar no horário de casa ou se adaptar?",
+  "kicker": "Viagens de trabalho",
+  "intro": "Nas viagens de trabalho curtas, de 1 a 3 dias, em geral convém ficar no horário de casa em vez de se adaptar ao fuso, enquanto nas viagens mais longas faz sentido deslocar o relógio biológico. A escolha depende de quantos dias você fica e de quando são seus compromissos. Aqui você encontra um critério simples para decidir.",
+  "sections": [
+   {
+    "h2": "Viagens curtas: 1-3 dias",
+    "paragraphs": [
+     "Se você fica pouco, o corpo não tem tempo de se adaptar e depois teria de refazer tudo na volta. Muitas vezes é mais eficiente manter os horários de casa: durma e coma como se estivesse no Brasil, mesmo que a hora local seja diferente.",
+     "Um exemplo: você viaja a Paris por dois dias (+4 em janeiro, +5 em julho). Se em casa você acorda às 7h, lá seriam 11h. Manter o seu ritmo significa reuniões que para o seu corpo caem de manhã e sono nas primeiras horas da manhã local: 23h em São Paulo são 3h em Paris em janeiro."
+    ],
+    "list": [
+     "Mantenha despertar e refeições no horário de casa o máximo possível.",
+     "Concentre os compromissos importantes nas horas em que seu corpo está mais alerta.",
+     "Evite luz intensa nas horas em que em casa seria noite.",
+     "Use cortinas blecaute e máscara para dormir quando for preciso."
+    ]
+   },
+   {
+    "h2": "Quando não vale ficar no horário de casa",
+    "paragraphs": [
+     "Com fusos muito grandes, por exemplo Tóquio (+12) ou Sydney (+14 em janeiro), ficar no horário de casa significa estar acordado à noite e dormindo de dia. Se as reuniões são em horário comercial local, não é viável.",
+     "Nesses casos você pode escolher um meio-termo: desloque um pouco os horários, sem perseguir o fuso inteiro. Se precisa estar no seu melhor numa reunião importante, chegue com um dia de folga."
+    ]
+   },
+   {
+    "h2": "Viagens longas: adaptar-se de verdade",
+    "paragraphs": [
+     "Se você fica mais de três ou quatro dias, adaptar-se é a melhor escolha. Rumo a leste adianta-se cerca de 1 hora por dia, rumo a oeste atrasa-se cerca de 1,5 hora por dia; sem fazer nada leva cerca de 1 dia por hora de fuso.",
+     "Você pode se preparar 1-3 dias antes, deslocando sono e despertar em 1 hora por dia. Uma vez lá, use a luz: nas horas depois do mínimo da temperatura corporal (cerca de 2 horas antes do seu despertar habitual) ela adianta o relógio, nas horas antes o atrasa. Com a calculadora do Sfuso você vê o plano dia a dia."
+    ]
+   },
+   {
+    "h2": "Dicas práticas para quem viaja muito",
+    "paragraphs": [
+     "Se você viaja muito, escolha voos com chegada no meio do dia se vai rumo a leste (entre 12h e 16h é o ideal), enquanto rumo a oeste convém chegar no meio do dia e ficar ao ar livre até a noite. Não marque reuniões importantes no mesmo dia da chegada se puder evitar.",
+     "Controle café e álcool: o último café pelo menos 6 horas antes de dormir e nada de álcool para pegar no sono. Se pensa em melatonina, converse antes com o médico ou o farmacêutico."
+    ]
+   },
+   {
+    "h2": "Um exemplo concreto",
+    "paragraphs": [
+     "Imagine partir de São Paulo para Tóquio (+12) por uma semana. São 12 horas de diferença, então vale se adaptar: parta com 1-3 dias de preparação, chegue no dia anterior ao evento principal e use a luz da manhã local. Numa viagem de dois dias a Paris, por outro lado, você fica no horário de casa e põe as reuniões nas horas em que seu corpo está acordado.",
+     "A regra útil é comparar os dias de permanência com as horas de fuso. Se os dias são poucos em relação às horas, não se adapte. Se os dias são iguais ou maiores, adapte-se e use luz e horários regulares."
+    ]
+   }
+  ],
+  "faq": [
+   {
+    "q": "Numa viagem de dois dias preciso me adaptar ao fuso?",
+    "a": "Em geral não. Com 1-3 dias de permanência o corpo não tem tempo de se adaptar, então convém ficar no horário de casa e programar os compromissos nas horas em que você está mais alerta, cuidando com atenção de luz, refeições e sono."
+   },
+   {
+    "q": "Depois de quantos dias vale a pena se adaptar ao horário local?",
+    "a": "Como regra geral, acima de 3-4 dias de permanência convém se adaptar. Rumo a leste adianta-se cerca de 1 hora por dia, rumo a oeste cerca de 1,5 hora por dia, então com fusos grandes o processo leva alguns dias. A calculadora do Sfuso ajuda a estimar."
+   },
+   {
+    "q": "Como me preparo antes de uma viagem longa?",
+    "a": "Nos 1-3 dias antes de partir, desloque sono e despertar em cerca de 1 hora por dia no sentido da viagem. Depois mire uma chegada no meio do dia e passe o tempo ao ar livre. A calculadora do Sfuso propõe o plano com base no seu horário de despertar."
+   }
+  ],
+  "related_tool": "calcolatore"
+ },
+ {
+  "slug": "melatonina-e-cafe",
+  "title": "Melatonina e café contra o jet lag: o que saber",
+  "description": "Melatonina e cafeína contra o jet lag: quando ajudam, quando não, e por que vale sempre perguntar a um médico ou farmacêutico antes de usá-las.",
+  "h1": "Melatonina e cafeína contra o jet lag: o que saber",
+  "kicker": "Sono e substâncias",
+  "intro": "A melatonina pode ajudar a realinhar o sono depois de um voo, sobretudo rumo a leste, enquanto a cafeína serve para ficar acordado mas pode piorar a noite. Nenhuma das duas substitui luz e horários regulares. As regras sobre a melatonina mudam de país para país: antes de usá-la, consulte um médico ou farmacêutico. Aqui não há doses, só o quadro geral.",
+  "sections": [
+   {
+    "h2": "O que faz a melatonina",
+    "paragraphs": [
+     "A melatonina é o hormônio que o corpo produz à noite, no escuro, e que sinaliza ao cérebro que é hora de dormir. Tomá-la como suplemento pode ajudar a deslocar o relógio biológico e a pegar no sono no novo fuso.",
+     "Uma revisão Cochrane (Herxheimer e Petrie, 2002) concluiu que a melatonina pode reduzir o jet lag, com efeitos mais evidentes em viagens rumo a leste e quando se cruzam muitos fusos. Não é uma solução mágica: ajuda, mas sozinha não basta."
+    ]
+   },
+   {
+    "h2": "Quando e como faz sentido falar dela",
+    "paragraphs": [
+     "Nos primeiros dias, a melatonina é tomada na hora em que você quer adormecer no novo fuso. Rumo a leste, onde é preciso adiantar o relógio, é mais útil; rumo a oeste serve menos, porque atrasar é mais fácil e o corpo se adapta cerca de 1,5 hora por dia.",
+     "A situação legal e a forma de venda da melatonina variam de país para país. Por isso convém sempre perguntar a um médico ou farmacêutico, sobretudo nestes casos:"
+    ],
+    "list": [
+     "crianças e adolescentes",
+     "gravidez e amamentação",
+     "uso de outros remédios, inclusive sem receita",
+     "problemas de saúde ou distúrbios do sono já existentes",
+     "dirigir ou fazer trabalhos de precisão logo após tomar"
+    ]
+   },
+   {
+    "h2": "O café: aliado e inimigo",
+    "paragraphs": [
+     "A cafeína mantém você acordado, então pode servir nas horas em que precisa estar lúcido depois de um voo. O problema é que ela fica em circulação por muito tempo: o último café deve ser pelo menos 6 horas antes da hora em que você quer dormir.",
+     "Se você chega ao destino de manhã e está cansado, um café pode ajudar. Mas se o tomar no início da tarde local, corre o risco de não pegar no sono à noite e de atrasar a adaptação. Considere também chá, refrigerante de cola e chocolate, que contêm cafeína."
+    ]
+   },
+   {
+    "h2": "O que conta mais de tudo",
+    "paragraphs": [
+     "Nem a melatonina nem o café deslocam o relógio tanto quanto a luz. O mínimo da temperatura corporal ocorre cerca de 2 horas antes do seu despertar habitual: a luz nas horas depois adianta o relógio, a das horas antes o atrasa. Use a calculadora do Sfuso para saber quando buscar ou evitar o sol.",
+     "Some sonecas curtas, no máximo 20-30 minutos e não depois das 16h locais, e horários de refeição coerentes com o novo fuso. São escolhas simples que muitas vezes pesam mais que um suplemento."
+    ]
+   },
+   {
+    "h2": "O que evitar",
+    "paragraphs": [
+     "Não tome suplementos só porque um colega ou amigo tomou: a resposta muda de pessoa para pessoa e depende também de quando você os toma. Evite combiná-los com álcool, que piora a qualidade do sono e faz você acordar no meio da noite.",
+     "Se notar sonolência de manhã, dor de cabeça ou sintomas novos, pare e converse com um médico. Para decidir se e como usar a melatonina, a fonte certa é sempre um profissional de saúde que conheça a sua situação."
+    ]
+   }
+  ],
+  "faq": [
+   {
+    "q": "A melatonina funciona contra o jet lag?",
+    "a": "Uma revisão Cochrane (Herxheimer e Petrie, 2002) indica que pode ajudar, sobretudo em viagens rumo a leste, se tomada na hora em que você quer adormecer nos primeiros dias. Não substitui luz e horários regulares, e vale ouvir antes o médico ou o farmacêutico."
+   },
+   {
+    "q": "Quando devo tomar o último café?",
+    "a": "Pelo menos 6 horas antes da hora em que você quer ir dormir no novo fuso. A cafeína permanece no corpo por muito tempo e pode dificultar o sono, atrasando a adaptação. Depois desse horário, melhor água ou chás de ervas, e lembre-se de que chá e cola também têm cafeína."
+   },
+   {
+    "q": "Posso dar melatonina a uma criança?",
+    "a": "Não faça isso por conta própria. As regras sobre a melatonina mudam de país para país e, para crianças, é preciso o parecer do pediatra. O mesmo vale na gravidez, na amamentação ou se você toma outros remédios: pergunte sempre ao médico ou farmacêutico, sem improvisar doses."
+   }
+  ],
+  "related_tool": "calcolatore"
+ },
+ {
+  "slug": "jet-lag-na-volta",
+  "title": "Jet lag na volta ao Brasil: por que pesa e como lidar",
+  "description": "O jet lag na volta ao Brasil costuma ser subestimado: como recuperar a forma depois de uma viagem rumo a leste ou a oeste, entre luz, horários e sonecas.",
+  "h1": "Jet lag na volta ao Brasil: o fuso que você não espera",
+  "kicker": "Volta para casa",
+  "intro": "O jet lag na volta ao Brasil é o descompasso que você sente ao retornar para casa depois de se adaptar ao fuso da viagem, e costuma ser subestimado porque parece que em casa tudo volta logo ao normal. Na verdade o seu relógio biológico se deslocou e precisa voltar, em ritmos diferentes conforme a direção.",
+  "sections": [
+   {
+    "h2": "Por que a volta pesa",
+    "paragraphs": [
+     "Durante a viagem você se adaptou, ao menos em parte, à hora local. Voltando para casa, precisa fazer o caminho ao contrário. Além disso, você costuma voltar com uma carga de trabalho, família e compromissos que não deixam tempo para se recuperar.",
+     "Se você foi para oeste, por exemplo ao Havaí (−7 horas em relação a São Paulo), na volta voa para leste e precisa adiantar o relógio: é a direção mais difícil, cerca de 1 hora por dia. Se foi para leste, por exemplo a Dubai (+7) ou a Londres (+3 em janeiro), a volta rumo a oeste é mais simples, com cerca de 1,5 hora por dia."
+    ]
+   },
+   {
+    "h2": "Antes do voo de volta",
+    "paragraphs": [
+     "Se tiver tempo, comece a deslocar sono e despertar em 1 hora por dia nos 1-3 dias antes de voltar, no sentido de casa. Mesmo pequenos deslocamentos reduzem o choque na chegada.",
+     "Escolha, se puder, um voo que faça você chegar à tarde, em especial se volta do oeste: entre 12h e 16h é o horário mais confortável para a volta rumo a leste. Evite marcar compromissos importantes para o dia seguinte à chegada."
+    ],
+    "list": [
+     "Deixe um dia livre na volta, quando possível.",
+     "Organize as compras ou as refeições com antecedência.",
+     "Evite café nas 6 horas antes de dormir.",
+     "Leve máscara e tampões para o voo."
+    ]
+   },
+   {
+    "h2": "As primeiras 48 horas em casa",
+    "paragraphs": [
+     "Assim que chegar, saia ao ar livre e procure a luz. A luz nas horas depois do mínimo da temperatura corporal (cerca de 2 horas antes do despertar habitual) adianta o relógio; a das horas antes o atrasa. Se você volta do oeste, isso ajuda a trazer o despertar de volta para o horário de Brasília.",
+     "Resista à soneca longa. Se realmente não aguentar, no máximo 20-30 minutos e não depois das 16h locais. Vá para a cama num horário razoável mesmo sem muito sono e mantenha o quarto escuro."
+    ]
+   },
+   {
+    "h2": "Quanto dura e o que esperar",
+    "paragraphs": [
+     "Sem fazer nada, leva cerca de 1 dia por hora de fuso. Com luz, horários regulares e refeições coerentes, o prazo diminui, mas voltar de fusos grandes pode levar uma semana ou mais.",
+     "Se o fuso é muito grande rumo a leste, por exemplo acima de 9-10 horas, o corpo pode achar mais natural atrasar em vez de adiantar. A calculadora do Sfuso leva isso em conta e propõe um plano dia a dia também para a volta."
+    ]
+   },
+   {
+    "h2": "Erros comuns na volta",
+    "paragraphs": [
+     "O mais frequente é dormir até tarde na primeira manhã para se recuperar: empurrar o despertar para a frente atrasa a volta do ritmo. Melhor acordar num horário razoável, sair à luz e tirar uma soneca breve só se precisar.",
+     "Outro erro é voltar e retomar tudo a pleno vapor de imediato. Se puder, reserve um dia de folga, coma em horários regulares e não tome café depois do meio-dia nos primeiros dias."
+    ]
+   }
+  ],
+  "faq": [
+   {
+    "q": "O jet lag na volta é pior que na ida?",
+    "a": "Depende da direção. Voltar do oeste para o leste costuma ser mais cansativo porque é preciso adiantar o relógio, cerca de 1 hora por dia. Voltar do leste para o oeste é mais simples, porque o corpo atrasa cerca de 1,5 hora por dia."
+   },
+   {
+    "q": "Quantos dias levo para me readaptar ao horário brasileiro?",
+    "a": "Sem fazer nada, cerca de 1 dia para cada hora de fuso. Se você fez uma viagem com 6 horas de diferença, pode levar até uma semana. Com luz na hora certa, refeições regulares e sonecas curtas, o prazo diminui bastante."
+   },
+   {
+    "q": "Posso trabalhar no dia seguinte à volta?",
+    "a": "Pode, mas convém evitar compromissos decisivos se o fuso é grande. Reservar um dia de margem, sair à luz, comer em horários regulares e tirar sonecas curtas, no máximo 20-30 minutos, ajuda a ficar mais lúcido e a reencontrar o ritmo."
+   }
+  ],
+  "related_tool": "calcolatore"
+ },
+ {
+  "slug": "luz-e-jet-lag",
+  "title": "Luz e jet lag: quando buscar o sol e quando evitá-lo",
+  "description": "Como usar a luz do sol e os óculos escuros para mudar o relógio biológico e reduzir o jet lag: quando buscar a luz e quando evitá-la.",
+  "h1": "Luz e jet lag: como deslocar o relógio biológico com o sol",
+  "kicker": "Luz e relógio",
+  "intro": "A luz é o sinal mais poderoso para deslocar o relógio biológico: tomada na hora certa reduz o jet lag, tomada na hora errada o piora. A referência é o mínimo da temperatura corporal, que ocorre cerca de 2 horas antes do seu despertar habitual. A luz depois desse ponto adianta o relógio, a de antes o atrasa.",
+  "sections": [
+   {
+    "h2": "O ponto de virada",
+    "paragraphs": [
+     "O seu corpo tem um momento da noite em que a temperatura chega ao mínimo, cerca de 2 horas antes do despertar habitual. Se você acorda às 7h, é por volta das 5h. É o eixo em torno do qual tudo gira.",
+     "A luz nas horas depois desse ponto adianta o relógio, ou seja, faz você sentir sono mais cedo à noite. A luz nas horas antes o atrasa, ou seja, faz você sentir sono mais tarde. Saber em que ponto do seu ciclo você está, hora a hora no novo fuso, é a chave."
+    ]
+   },
+   {
+    "h2": "Rumo a leste: adiantar",
+    "paragraphs": [
+     "Quando você voa rumo a leste, por exemplo para Londres (+3 em janeiro) ou Dubai (+7), precisa adiantar. O relógio pode ser deslocado cerca de 1 hora por dia. Procure a luz de manhã depois do seu mínimo e evite a da noite, que o atrasaria.",
+     "Há casos particulares: acima de 9-10 horas rumo a leste, por exemplo para Tóquio (+12) ou Bangkok (+10), muitas vezes vale atrasar em vez de adiantar. Nesse caso a luz da noite ajuda e a da manhã deve ser evitada nos primeiros dias. A calculadora do Sfuso indica qual estratégia seguir."
+    ],
+    "list": [
+     "Chegada ideal rumo a leste entre 12h e 16h.",
+     "No primeiro dia, busque a luz à tarde, não cedo demais.",
+     "Nos dias seguintes, adiante a exposição em uma hora."
+    ]
+   },
+   {
+    "h2": "Rumo a oeste: atrasar",
+    "paragraphs": [
+     "Rumo a oeste, por exemplo Honolulu (−7) ou Los Angeles (−5 em janeiro), você precisa atrasar, e o corpo consegue cerca de 1,5 hora por dia. Chegue no meio do dia e fique ao ar livre até a noite: a luz da noite ajuda a deslocar o sono mais para a frente.",
+     "De manhã cedo, se acordar muito antes do amanhecer local, fique em ambientes pouco iluminados. Nesse caso a luz antes do seu mínimo o atrasaria, mas se chega cedo demais pode confundir."
+    ]
+   },
+   {
+    "h2": "Óculos escuros e luz artificial",
+    "paragraphs": [
+     "Os óculos escuros servem para evitar a luz nas horas erradas. Se você sai no momento em que a luz o deslocaria na direção oposta, use-os: eles reduzem o efeito do sol sobre o relógio. À noite, em casa, baixe as luzes e limite as telas.",
+     "A luz artificial também conta, mas muito menos que o sol ao ar livre. De dia, com nuvens ou não, passar uma hora fora é mais eficaz do que ficar num quarto iluminado. Uma soneca não depois das 16h locais e de no máximo 20-30 minutos evita interferir no sono."
+    ]
+   },
+   {
+    "h2": "Um exemplo com horários",
+    "paragraphs": [
+     "Se você costuma acordar às 7h, o mínimo ocorre por volta das 5h. Saindo de São Paulo rumo ao Havaí (−7), as 5h de casa correspondem a 22h locais: a luz da noite lá o atrasa, e é o que você quer. Rumo a Dubai (+7), as 5h viram 12h locais: a luz depois desse horário adianta.",
+     "Esses cálculos mudam todo dia, porque o seu mínimo se desloca enquanto você se adapta. Por isso o plano é feito por dias, não uma vez só. A calculadora do Sfuso o atualiza para você, dando janelas de luz e de escuro a cada dia."
+    ]
+   }
+  ],
+  "faq": [
+   {
+    "q": "Quando devo buscar a luz para adiantar o relógio?",
+    "a": "Nas horas depois do mínimo da temperatura corporal, que ocorre cerca de 2 horas antes do seu despertar habitual. A luz nessa faixa adianta o relógio e faz você sentir sono mais cedo à noite. Evite, por outro lado, a luz nas horas antes desse ponto."
+   },
+   {
+    "q": "Os óculos escuros ajudam contra o jet lag?",
+    "a": "Sim, se você os usa para evitar a luz nas horas em que ela deslocaria o relógio na direção errada, pois reduzem a intensidade que chega aos olhos. Não substituem, porém, a luz certa na hora certa, que continua sendo a ferramenta principal e mais eficaz contra o jet lag."
+   },
+   {
+    "q": "A luz artificial pode substituir o sol?",
+    "a": "Pode dar uma pequena ajuda, mas ao ar livre a luz natural é muito mais intensa, mesmo com o céu nublado. Para deslocar o relógio biológico vale passar tempo fora nas horas certas e baixar as luzes à noite, limitando as telas nas horas antes de dormir."
+   }
+  ],
+  "related_tool": "calcolatore"
+ }
+]

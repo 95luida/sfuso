@@ -32,13 +32,15 @@ SF.localStr=(ms,tz)=>{const x=new Date(ms+offMin(tz,ms)*6e4);return x.getUTCFull
 SF.localH=(ms,tz)=>{const h=((ms+offMin(tz,ms)*6e4)/H)%24;return h<0?h+24:h;};
 SF.hm=v=>{const m=/^(\d{1,2}):(\d{2})/.exec(v||'');return m?(+m[1])+(+m[2])/60:NaN;};
 const norm=SF.norm=h=>{h%=24;return h<0?h+24:h;};
-const fh=SF.fh=h=>{h=Math.round(norm(h)*4)/4;if(h>=24)h-=24;const a=Math.floor(h),b=Math.round((h-a)*60);return pad(a)+':'+pad(b);};
-SF.fhm=h=>{let m=Math.round(norm(h)*60)%1440;return pad(Math.floor(m/60))+':'+pad(m%60);};
+/* ore nel formato della lingua: 24 ore, oppure 12 ore con AM/PM (inglese USA) */
+const hfmt=(a,b)=>{if(!SF.T._h12)return pad(a)+':'+pad(b);const x=a%12||12,su=a<12?'AM':'PM';return b?x+':'+pad(b)+' '+su:x+' '+su;};
+const fh=SF.fh=h=>{h=Math.round(norm(h)*4)/4;if(h>=24)h-=24;const a=Math.floor(h),b=Math.round((h-a)*60);return hfmt(a,b);};
+SF.fhm=h=>{let m=Math.round(norm(h)*60)%1440;return hfmt(Math.floor(m/60),m%60);};
 const fdur=SF.fdur=x=>{x=Math.round(x*2)/2;return (x%1?String(x).replace('.',SF.DEC):x)+' h';};
 SF.fnum=x=>String(Math.round(x*2)/2).replace('.',SF.DEC);
 SF.fday=(ms,tz)=>new Intl.DateTimeFormat(SF.LOC,{weekday:'long',day:'numeric',month:'long',timeZone:tz}).format(new Date(ms));
 SF.tzLabel=(tz,ms)=>{let o=offMin(tz,ms)/60;const s=o>=0?'+':'−';o=Math.abs(o);return 'UTC'+s+(o%1?String(o).replace('.',SF.DEC):o);};
-SF.nowIn=(tz,ms)=>new Intl.DateTimeFormat(SF.LOC,{hour:'2-digit',minute:'2-digit',hourCycle:'h23',timeZone:tz}).format(new Date(ms||Date.now()));
+SF.nowIn=(tz,ms)=>new Intl.DateTimeFormat(SF.LOC,SF.T._h12?{hour:'numeric',minute:'2-digit',hour12:true,timeZone:tz}:{hour:'2-digit',minute:'2-digit',hourCycle:'h23',timeZone:tz}).format(new Date(ms||Date.now()));
 SF.diffH=(a,b,ms)=>{let d=(offMin(b.tz,ms)-offMin(a.tz,ms))/60;while(d>12)d-=24;while(d<=-12)d+=24;return d;};
 SF.esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 

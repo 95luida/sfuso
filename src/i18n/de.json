@@ -171,7 +171,19 @@
   "Cina": "China",
   "Giappone": "Japan",
   "Corea del Sud": "Südkorea",
-  "Australia": "Australien"
+  "Australia": "Australien",
+  "Regno Unito": "Vereinigtes Königreich",
+  "Francia": "Frankreich",
+  "Italia": "Italien",
+  "Spagna": "Spanien",
+  "Portogallo": "Portugal",
+  "Paesi Bassi": "Niederlande",
+  "Irlanda": "Irland",
+  "Germania": "Deutschland",
+  "Grecia": "Griechenland",
+  "Turchia": "Türkei",
+  "Marocco": "Marokko",
+  "Sudafrica": "Südafrika"
  },
  "ui": {
   "city_not_found": "Ich finde die Stadt {which} nicht: Wähle eine aus der Liste oder eine in der Nähe mit derselben Zeitzone.",

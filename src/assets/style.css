@@ -348,13 +348,21 @@ footer.site address{font-style:normal}
 @media print{.site-h,.hero,#calcola,.section,footer.site,.acts,.dock,.skip{display:none!important}body{background:#fff}.day,.verdict{break-inside:avoid}}
 
 /* selettore della lingua */
-.langs{display:flex;gap:2px;margin-left:auto;margin-right:4px}
-.langs a{display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:36px;padding:0 6px;border-radius:999px;text-decoration:none;font:500 12px/1 var(--mono);letter-spacing:.04em;color:#aeb8de}
-.langs a[aria-current="page"]{background:rgba(255,255,255,.14);color:#fff}
-.langs a:hover{color:#fff}
-.sheet .langs.big-l{margin:22px 0 0;gap:8px}
-.sheet .langs.big-l a{min-width:52px;min-height:48px;font-size:14px;background:rgba(255,255,255,.08)}
+.langs{position:relative;margin-left:auto;margin-right:4px}
+.langs summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border-radius:999px;background:rgba(255,255,255,.1);font:500 12px/1 var(--mono);letter-spacing:.06em;color:#fff}
+.langs summary::-webkit-details-marker{display:none}
+.langs summary::after{content:"▾";font-size:10px;opacity:.7}
+.langs .ll{position:absolute;right:0;top:calc(100% + 8px);min-width:220px;padding:6px;border-radius:16px;background:#0d1430;box-shadow:0 20px 40px -16px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.1);display:grid;z-index:45}
+.langs .ll a,.sheet .big-l a{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 12px;border-radius:10px;text-decoration:none;color:#dfe4f5;font-size:.95rem}
+.langs .ll a b,.sheet .big-l a b{font:500 12px/1 var(--mono);color:#9aa6cf;min-width:24px}
+.langs .ll a[aria-current="page"],.langs .ll a:hover{background:rgba(255,255,255,.1);color:#fff}
+.sheet .big-l{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:18px}
+.sheet .big-l a{background:rgba(255,255,255,.06)}
+.sheet .big-l a[aria-current="page"]{background:rgba(255,255,255,.16);color:#fff}
+.sheet{overflow-y:auto}
 @media (max-width:860px){.site-h .langs{display:none}}
 /* parole lunghe (fr/de) nelle schede strette */
 .grid4>*,.grid3>*,.grid2>*{min-width:0}
 .tool-c b,.dest b,.feat h3,h1,h2{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
+.seg{grid-auto-columns:minmax(0,1fr)}
+.seg button{min-width:0;-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}

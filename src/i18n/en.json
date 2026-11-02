@@ -2,8 +2,8 @@
  "lang": "en",
  "locale": "en-GB",
  "og_locale": "en_GB",
- "label": "English",
- "short": "EN",
+ "label": "English (UK)",
+ "short": "UK",
  "dec": ".",
  "date_text": "2 November 2026",
  "home": {
@@ -171,7 +171,19 @@
   "Cina": "China",
   "Giappone": "Japan",
   "Corea del Sud": "South Korea",
-  "Australia": "Australia"
+  "Australia": "Australia",
+  "Regno Unito": "United Kingdom",
+  "Francia": "France",
+  "Italia": "Italy",
+  "Spagna": "Spain",
+  "Portogallo": "Portugal",
+  "Paesi Bassi": "Netherlands",
+  "Irlanda": "Ireland",
+  "Germania": "Germany",
+  "Grecia": "Greece",
+  "Turchia": "Turkey",
+  "Marocco": "Morocco",
+  "Sudafrica": "South Africa"
  },
  "ui": {
   "city_not_found": "I can't find the {which} city: pick one from the list or a nearby one in the same time zone.",

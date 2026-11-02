@@ -171,7 +171,19 @@
   "Cina": "Chine",
   "Giappone": "Japon",
   "Corea del Sud": "Corée du Sud",
-  "Australia": "Australie"
+  "Australia": "Australie",
+  "Regno Unito": "Royaume-Uni",
+  "Francia": "France",
+  "Italia": "Italie",
+  "Spagna": "Espagne",
+  "Portogallo": "Portugal",
+  "Paesi Bassi": "Pays-Bas",
+  "Irlanda": "Irlande",
+  "Germania": "Allemagne",
+  "Grecia": "Grèce",
+  "Turchia": "Turquie",
+  "Marocco": "Maroc",
+  "Sudafrica": "Afrique du Sud"
  },
  "ui": {
   "city_not_found": "Je ne trouve pas la ville {which} : choisissez-en une dans la liste ou une ville voisine dans le même fuseau.",

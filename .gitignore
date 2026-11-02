@@ -8,3 +8,6 @@ src/i18n/BRIEF.md
 .DS_Store
 __pycache__/
 reddit-post.md
+src/i18n/BRIEF-AM.md
+src/i18n/facts-am.json
+src/i18n/facts-am.md

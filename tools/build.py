@@ -7,7 +7,7 @@ from html import escape as E
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'src'))
-from cities import CITIES, DESTS
+from cities import CITIES, DESTS, DESTS_AM
 
 OUT = os.path.join(ROOT, 'site', 'jet-lag')
 SITE = 'https://www.dalpuntoweb.it'
@@ -15,10 +15,14 @@ BASE = SITE + '/jet-lag/'
 TODAY = '2026-11-02'
 VER = '4'
 BY = {c[0]: c for c in CITIES}
-DEST_BY = {d[0]: d for d in DESTS}
-ORDER = ['it', 'en', 'es', 'fr', 'de']
+DEST_BY = {**{d[0]: d for d in DESTS_AM}, **{d[0]: d for d in DESTS}}
+ORDER = ['it', 'en', 'es', 'fr', 'de', 'en-us', 'es-mx', 'pt-br', 'fr-ca']
 LANGS = [l for l in ORDER if os.path.exists(os.path.join(ROOT, 'src', 'i18n', f'{l}.json'))]
 XDEFAULT = 'en' if 'en' in LANGS else 'it'
+H12 = False   # orari a 12 ore (inglese USA)
+DEFAULT_DEST = {'en-us': 'Londra', 'es-mx': 'Madrid', 'pt-br': 'Lisbona', 'fr-ca': 'Parigi'}
+HOME_DESTS_AM = ['Londra', 'Parigi', 'Roma', 'Tokyo', 'Madrid', 'Dubai', 'Bangkok', 'Sydney', 'Lisbona', 'Bali']
+POP_AM = ['Londra', 'Parigi', 'Roma', 'Madrid', 'Tokyo', 'Dubai', 'Bangkok', 'Sydney', 'Lisbona', 'Bali', 'Barcellona']
 WARN = []
 
 # ---------------------------------------------------------------- calcoli sulle rotte
@@ -32,7 +36,11 @@ def norm(h): return h % 24
 def fh(h):
     h = round(norm(h) * 4) / 4
     if h >= 24: h -= 24
-    return f'{int(h):02d}:{round((h - int(h)) * 60):02d}'
+    H, M = int(h), round((h - int(h)) * 60)
+    if H12:
+        hh = H % 12 or 12; suf = 'AM' if H < 12 else 'PM'
+        return f'{hh}:{M:02d} {suf}' if M else f'{hh} {suf}'
+    return f'{H:02d}:{M:02d}'
 def segs(a, b):
     ln = b - a; a = norm(a)
     if ln <= 0: return []
@@ -65,7 +73,7 @@ def ranges(lst):
     lst = sorted(lst)
     if len(lst) > 1 and lst[0][0] == 0 and lst[-1][1] == 24:
         f = lst.pop(0); l = lst.pop(); lst.append([l[0], f[1] + 24])
-    return [(fh(s[0]), fh(s[1])) for s in lst]
+    return [(fh(s[0]), fh(s[1])) for s in lst]  # nel formato della lingua in corso
 
 def route(dest_name, home, bed=23, wake=7):
     h, d = BY[home], BY[dest_name]
@@ -112,6 +120,7 @@ POP_IT = ["New York", "Tokyo", "Dubai", "Bangkok", "Maldive", "Los Angeles", "Mi
 HOME_DESTS = ['New York', 'Tokyo', 'Dubai', 'Bangkok', 'Maldive', 'Los Angeles', 'Bali', 'Sydney']
 GUIDE_MAPS = ['Tokyo', 'New York', 'Singapore', 'Bangkok', 'New York', 'Dubai']
 ALL_PAGES = {}   # id -> {lang: path}
+LINFO = {}       # lang -> (nome, hreflang, sigla)
 
 class Safe(dict):
     def __missing__(self, k):
@@ -133,12 +142,27 @@ class Lang:
         self.home = inv[L['home']['city']]                       # chiave italiana della città di casa
         self.alt = L['home']['alt_city']
         self.pre = '' if code == 'it' else code + '/'
-        self.R = {d[0]: route(d[0], self.home) for d in DESTS}
+        self.am = '-' in code
+        self.h12 = code == 'en-us'
+        self.hl = L['locale'] if self.am else code
+        if self.am:
+            cand = [d for d in DESTS_AM if d[0] != self.home]
+            self.dests = [d for d in cand if abs(route(d[0], self.home)['D']) >= 2][:24]
+        else: self.dests = list(DESTS)
+        self.dnames = [d[0] for d in self.dests]
+        self.default_dest = DEFAULT_DEST.get(code, 'New York')
+        self.home_dests = [n for n in (HOME_DESTS_AM if self.am else ['New York', 'Tokyo', 'Dubai', 'Bangkok', 'Maldive', 'Los Angeles', 'Bali', 'Sydney']) if n in self.dnames][:8]
+        self.pop = [n for n in (POP_AM if self.am else POP_IT) if n != self.home][:10]
         h = L['home']
         self.ctx = {'from': h['from'], 'From': h['from'][:1].upper() + h['from'][1:], 'home_country': h['country'], 'home_in': h['in'], 'home_rel': h['rel'],
                     'home_of': h['of'], 'hc': L['home']['city'], 'alt': h['alt_city']}
         self.dec = L['dec']
-        self.grp = {'en': ',', 'fr': ' '}.get(code, '.')
+        self.grp = {'en': ',', 'en-us': ',', 'es-mx': ',', 'fr': ' ', 'fr-ca': ' '}.get(code, '.')
+        self.compute()
+    def compute(self):
+        global H12
+        H12 = self.h12
+        self.R = {d[0]: route(d[0], self.home) for d in self.dests}
 
     # testi
     def f(self, _tpl, **kw): return _tpl.format_map(Safe({**self.ctx, **kw}))
@@ -146,6 +170,7 @@ class Lang:
     def fnum(self, x):
         x = round(x * 2) / 2
         return (f'{x:.1f}'.replace('.', self.dec)) if x % 1 else str(int(x))
+    def hr(self, n): return fh(n) if self.h12 else str(n)
     def sgn(self, x): return ('+' if x > 0 else '−' if x < 0 else '±') + self.fnum(abs(x))
     def lvl(self, r): return self.L['levels'][r['li']]
     def km(self, n): return f'{n:,}'.replace(',', self.grp)
@@ -162,7 +187,7 @@ class Lang:
 def collect_paths(langs):
     for lg in langs:
         reg = {'home': '', 'routes': lg.path_routes(), 'rank': lg.path_rank(), 'tools': lg.path_tools(), 'guides': lg.path_guides()}
-        for d in DESTS: reg['route:' + d[1]] = lg.path_route(d[1])
+        for d in lg.dests: reg['route:' + d[1]] = lg.path_route(d[1])
         for k in TOOL_KEYS: reg['tool:' + k] = lg.path_tool(k)
         for i in range(len(lg.G)): reg[f'guide:{i}'] = lg.path_guide(i)
         for pid, pth in reg.items(): ALL_PAGES.setdefault(pid, {})[lg.code] = lg.pre + pth
@@ -174,18 +199,19 @@ def header(lg, cur, pid):
     links = ''.join(f'<a href="{u}"{AC if k == cur else ""}>{E(t)}</a>' for k, u, t in nav)
     sheet = f'<a class="big" href="{lg.u()}">{E(P["nav_calc"])}<span>→</span></a>' + ''.join(f'<a class="big" href="{u}">{E(t)}<span>→</span></a>' for k, u, t in nav)
     alts = ALL_PAGES.get(pid, {})
-    langs = ''.join(f'<a href="/jet-lag/{alts[c]}" hreflang="{c}" lang="{c}"{AC if c == lg.code else ""}>{c.upper()}</a>' for c in LANGS if c in alts)
+    items = ''.join(f'<a href="/jet-lag/{alts.get(c, ALL_PAGES["home"][c])}" hreflang="{LINFO[c][1]}" lang="{LINFO[c][1]}"{AC if c == lg.code else ""}><b>{E(LINFO[c][2])}</b>{E(LINFO[c][0])}</a>' for c in LANGS)
+    langs = f'<details class="langs"><summary aria-label="{E(P["lang_aria"])}">{E(lg.L["short"])}</summary><div class="ll">{items}</div></details>'
     return f'''<header class="site-h"><div class="wrap"><div class="bar">
 <a class="brand" href="{lg.u()}" aria-label="{E(P['home_aria'])}">{LOGO}</a>
 <nav aria-label="{E(P['nav_aria'])}">{links}<a class="go" href="{lg.u()}#calcola">{E(P['nav_go'])}</a></nav>
 <div class="langs" aria-label="{E(P['lang_aria'])}">{langs}</div>
 <button type="button" class="menu-b" aria-label="{E(P['menu_open'])}" aria-expanded="false" aria-controls="sheet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg></button>
 </div></div></header>
-<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="{E(P['menu'])}"><div class="top"><span class="brand">{LOGO}</span><button type="button" class="x" aria-label="{E(P['menu_close'])}">✕</button></div>{sheet}<div class="langs big-l">{langs}</div></div>'''
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="{E(P['menu'])}"><div class="top"><span class="brand">{LOGO}</span><button type="button" class="x" aria-label="{E(P['menu_close'])}">✕</button></div>{sheet}<div class="big-l">{items}</div></div>'''
 
 def footer(lg):
     P = lg.P
-    mete = ''.join(f'<li><a href="{lg.u(lg.path_route(d[1]))}">{E(lg.p("jl_city", c=lg.cn(d[0])))}</a></li>' for d in DESTS[:8])
+    mete = ''.join(f'<li><a href="{lg.u(lg.path_route(d[1]))}">{E(lg.p("jl_city", c=lg.cn(d[0])))}</a></li>' for d in lg.dests[:8])
     tl = ''.join(f'<li><a href="{lg.u(lg.path_tool(k))}">{E(P["tools"][k]["name"])}</a></li>' for k in TOOL_KEYS)
     gl = ''.join(f'<li><a href="{lg.u(lg.path_guide(i))}">{E(g["h1"])}</a></li>' for i, g in enumerate(lg.G[:5]))
     credit = lg.p('foot_credit', date=f'<time datetime="{TODAY}">{E(lg.L["date_text"])}</time>')
@@ -214,18 +240,18 @@ def page(lg, pid, title, desc, body, cur='', ld=None, scripts=('site',), og_titl
     for n in graph:
         if n.get('@type') in ('WebPage', 'CollectionPage', 'WebApplication', 'Article', 'WebSite'): n.setdefault('inLanguage', lg.L['locale'])
     cities = json.dumps([[lg.cn(c[0])] + list(c[1:]) for c in CITIES], ensure_ascii=False, separators=(',', ':'))
-    T = dict(lg.L['ui']); T['_dec'] = lg.dec; T['_levels'] = lg.L['levels']; T['_none'] = lg.L['level_none']
+    T = dict(lg.L['ui']); T['_dec'] = lg.dec; T['_levels'] = lg.L['levels']; T['_none'] = lg.L['level_none']; T['_h12'] = lg.h12
     home = lg.home
     tzl = [x for x in ['New York', 'Londra', 'Dubai', 'Tokyo', 'Los Angeles', 'Sydney', 'Milano'] if x != home][:6]
     world = [home] + [x for x in ['Londra', 'New York', 'Los Angeles', 'Città del Messico', 'San Paolo', 'Dubai', 'Mosca', 'Nuova Delhi', 'Bangkok', 'Singapore', 'Hong Kong', 'Tokyo', 'Sydney', 'Auckland', 'Honolulu', 'Milano'] if x != home]
     DEF = {'home': lg.cn(home), 'tz': [lg.cn(x) for x in tzl], 'mtg': [lg.cn(x) for x in [home, 'New York', 'Tokyo']], 'world': [lg.cn(x) for x in world[:16]]}
     alts = ALL_PAGES[pid]
-    hl = ''.join(f'<link rel="alternate" hreflang="{c}" href="{BASE}{alts[c]}">' for c in LANGS if c in alts)
+    hl = ''.join(f'<link rel="alternate" hreflang="{LINFO[c][1]}" href="{BASE}{alts[c]}">' for c in LANGS if c in alts)
     hl += f'<link rel="alternate" hreflang="x-default" href="{BASE}{alts.get(XDEFAULT, path)}">'
     ogalt = ''.join(f'<meta property="og:locale:alternate" content="{json.load(open(os.path.join(ROOT, "src", "i18n", c + ".json")))["og_locale"]}">' for c in LANGS if c != lg.code and c in alts)
     js = ''.join(f'<script src="/jet-lag/assets/{s}.js?v={VER}" defer></script>' for s in scripts)
     html = f'''<!doctype html>
-<html lang="{lg.code}">
+<html lang="{lg.hl}">
 <head>
 <meta charset="utf-8">
 {GTM_HEAD}
@@ -253,7 +279,7 @@ def page(lg, pid, title, desc, body, cur='', ld=None, scripts=('site',), og_titl
 {body}
 </main>
 {footer(lg)}
-<script>window.SF_CITIES={cities};window.SF_T={json.dumps(T, ensure_ascii=False)};window.SF_LOC="{lg.L['locale']}";window.SF_POP={json.dumps([lg.cn(x) for x in POP_IT], ensure_ascii=False)};window.SF_DEF={json.dumps(DEF, ensure_ascii=False)};</script>
+<script>window.SF_CITIES={cities};window.SF_T={json.dumps(T, ensure_ascii=False)};window.SF_LOC="{lg.L['locale']}";window.SF_POP={json.dumps([lg.cn(x) for x in lg.pop], ensure_ascii=False)};window.SF_DEF={json.dumps(DEF, ensure_ascii=False)};</script>
 <script src="/jet-lag/assets/core.js?v={VER}" defer></script>{js}
 <script src="/cookie/consent.js" defer></script>
 </body>
@@ -267,6 +293,7 @@ SITEMAP = []
 
 def hero(lg, h1, lead, crumbs_html=None, kicker=None, dest='New York', small=True, extra='', lead_id='definizione', cta=None):
     cta = lg.u() + '#calcola' if cta is None else cta
+    if dest == lg.home or dest not in BY: dest = lg.default_dest
     return f'''<section class="hero{' small' if small else ''}"><div class="map-w" data-map="{E(lg.cn(lg.home))}|{E(lg.cn(dest))}" aria-hidden="true"></div><div class="wrap in">
 {crumbs_html or ''}{f'<span class="kicker"><i></i>{E(kicker)}</span>' if kicker else ''}
 <h1>{h1}</h1><p class="lead" id="{lead_id}">{lead}</p>{f'<p style="margin:20px 0 0"><a class="btn main" href="{cta}">{E(lg.P["hero_cta"])}</a></p>' if cta else ''}{extra}</div></section>'''
@@ -294,9 +321,9 @@ def calc_html(lg, dest):
   <div class="sep"></div>
   <span class="lab" id="l-sonno">{E(P['f_sleep'])}</span>
   <div class="seg" role="group" aria-labelledby="l-sonno" id="sonno">
-    <button type="button" data-v="22:00-06:00" aria-pressed="false">{E(P['f_lark'])}<small>22–06</small></button>
-    <button type="button" data-v="23:00-07:00" aria-pressed="true">{E(P['f_classic'])}<small>23–07</small></button>
-    <button type="button" data-v="00:30-08:30" aria-pressed="false">{E(P['f_owl'])}<small>0:30–8:30</small></button>
+    <button type="button" data-v="22:00-06:00" aria-pressed="false">{E(P['f_lark'])}<small>{fh(22) if lg.h12 else '22'}–{fh(6) if lg.h12 else '06'}</small></button>
+    <button type="button" data-v="23:00-07:00" aria-pressed="true">{E(P['f_classic'])}<small>{fh(23) if lg.h12 else '23'}–{fh(7) if lg.h12 else '07'}</small></button>
+    <button type="button" data-v="00:30-08:30" aria-pressed="false">{E(P['f_owl'])}<small>{fh(0.5) if lg.h12 else '0:30'}–{fh(8.5) if lg.h12 else '8:30'}</small></button>
     <button type="button" data-v="custom" aria-pressed="false">{E(P['f_custom'])}<small id="cust-l">{E(lg.L['ui']['custom_set'])}</small></button>
   </div>
   <div class="custom two" id="custom" hidden>
@@ -342,14 +369,14 @@ def build_home(lg):
     lo = min(R.values(), key=lambda r: (r['noplan'], r['fl'])); hi = max(R.values(), key=lambda r: (r['noplan'], r['fl']))
     facts = f'<div class="facts"><div class="fact"><b>24</b><span>{E(lg.p("home_f1"))}</span></div><div class="fact"><b>4</b><span>{E(P["home_f2"])}</span></div><div class="fact"><b>.ics</b><span>{E(P["home_f3"])}</span></div></div>'
     body = hero(lg, P['home_h1'], E(P['home_lead']), None, P['home_kicker'], 'Tokyo', False, facts, cta='#calcola')
-    body += calc_html(lg, 'New York')
+    body += calc_html(lg, lg.default_dest)
     faq = [tuple(x) for x in P['home_faq']]
     body += f'''<section class="section" id="come" aria-labelledby="h-come"><div class="wrap">
 <span class="eyebrow">{E(P['m_eyebrow'])}</span><h2 id="h-come">{E(P['m_h'])}</h2><p class="prose muted">{E(P['m_p'])}</p>
 <div class="grid3">{''.join(f'<div class="feat card rv"><span class="n">{i}</span><h3>{E(P[f"m{i}_h"])}</h3><p>{E(P[f"m{i}_p"])}</p></div>' for i in (1, 2, 3))}</div></div></section>
 <section class="section" aria-labelledby="h-mete"><div class="wrap"><span class="eyebrow">{E(lg.p('hd_eyebrow'))}</span><h2 id="h-mete">{E(P['hd_h'])}</h2>
 <p class="prose muted">{E(lg.p('hd_p', min_days=lo['noplan'], min_city=lg.cn(lo['name']), max_days=hi['noplan'], max_city=lg.cn(hi['name'])))}</p>
-<div class="grid4">{''.join(dest_card(lg, n) for n in HOME_DESTS)}</div><p style="margin-top:16px"><a class="btn dark" href="{lg.u(lg.path_routes())}">{E(P['hd_all'])}</a> <a class="btn" href="{lg.u(lg.path_rank())}">{E(P['hd_rank'])}</a></p></div></section>
+<div class="grid4">{''.join(dest_card(lg, n) for n in lg.home_dests)}</div><p style="margin-top:16px"><a class="btn dark" href="{lg.u(lg.path_routes())}">{E(P['hd_all'])}</a> <a class="btn" href="{lg.u(lg.path_rank())}">{E(P['hd_rank'])}</a></p></div></section>
 <section class="section" aria-labelledby="h-str"><div class="wrap"><span class="eyebrow">{E(P['ht_eyebrow'])}</span><h2 id="h-str">{E(P['ht_h'])}</h2><p class="prose muted">{E(P['ht_p'])}</p>
 <div class="grid4">{''.join(tool_card(lg, k) for k in TOOL_KEYS)}</div></div></section>
 <section class="section" aria-labelledby="h-gd"><div class="wrap"><span class="eyebrow">{E(P['hg_eyebrow'])}</span><h2 id="h-gd">{E(P['hg_h'])}</h2><p class="prose muted">{E(P['hg_p'])}</p>
@@ -372,7 +399,7 @@ def build_route(lg, d):
     pre = lg.p('r_pre_adv' if r['dir'] == 'advance' else 'r_pre_del', n=r['days2'])
     light = lg.p('r_light_seek', a=r['seek'][0][0], b=r['seek'][0][1]) if r['seek'] else P['r_light_none']
     light += lg.p('r_light_avoid', a=r['avoid'][0][0], b=r['avoid'][0][1]) if r['avoid'] else '.'
-    arr = lg.p('r_arr_win', a=r['arr'][0], b=r['arr'][1])
+    arr = lg.p('r_arr_win', a=lg.hr(r['arr'][0]), b=lg.hr(r['arr'][1]))
     flight = lg.p('r_flight', fl=lg.fnum(r['fl']), km=lg.km(r['km'])) + (lg.p('r_flight_e', c=c) if r['east'] else P['r_flight_w'])
     back = lg.p('r_back_adv', n=math.ceil(abs(r['D']) / 1.5 - 1e-9)) if r['dir'] == 'advance' else lg.p('r_back_del', n=math.ceil(abs(r['D']) - 1e-9))
     dirw = P['dir_east'] if r['east'] else P['dir_west']
@@ -386,7 +413,7 @@ def build_route(lg, d):
     facts = f'''<div class="facts"><div class="fact"><b>{lg.sgn(r['dw'])} h</b><span>{E(P['r_f_w'])}</span></div><div class="fact"><b>{lg.sgn(r['ds'])} h</b><span>{E(P['r_f_s'])}</span></div><div class="fact"><b>{r['days0']} {E(P['r_f_days_unit'])}</b><span>{E(lg.p('r_f_days', n=r['noplan']))}</span></div><div class="fact"><b>{r['score']}/10</b><span>{E(lg.p('r_f_level', level=lg.lvl(r)))}</span></div><div class="fact"><b>~{lg.fnum(r['fl'])} h</b><span>{E(P['r_f_fl'])}</span></div><div class="fact"><b><span data-now="{r['tz']}">--:--</span></b><span>{E(lg.p('r_f_now', c=c))}</span></div></div>'''
     body = hero(lg, E(lg.p('r_h1', c=c)), E(lg.p('r_lead', c=c, seas=seas, how=how)), ch, lg.p('r_kicker', country=lg.L['countries'].get(country, country), dir=dirw), name, True, facts, cta='#calcola')
     body += calc_html(lg, name)
-    others = [x[0] for x in DESTS if x[0] != name and lg.R[x[0]]['east'] == r['east']][:4]
+    others = [x[0] for x in lg.dests if x[0] != name and lg.R[x[0]]['east'] == r['east']][:4]
     link = f'<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2829880/" target="_blank" rel="noopener" aria-label="How To Travel the World Without Jet lag {E(P["new_tab"])}">How To Travel the World Without Jet lag</a>'
     body += f'''<section class="section" aria-labelledby="h-quanto"><div class="wrap prose">
 <span class="eyebrow">{E(lg.p('r_eyebrow', c=c))}</span>
@@ -408,8 +435,8 @@ def build_route(lg, d):
 def build_routes_hub(lg):
     P = lg.P; R = lg.R
     ch, cld = crumbs(lg, [(P['nav_routes'], lg.u(lg.path_routes()))])
-    west = [d[0] for d in DESTS if not R[d[0]]['east']]; east = [d[0] for d in DESTS if R[d[0]]['east']]
-    wd = [abs(R[n]['D']) for n in west]; ed = [R[n]['D'] for n in east if R[n]['why'] != 'east-long']
+    west = [d[0] for d in lg.dests if not R[d[0]]['east']]; east = [d[0] for d in lg.dests if R[d[0]]['east']]
+    wd = [abs(R[n]['D']) for n in west] or [0]; ed = [R[n]['D'] for n in east if R[n]['why'] != 'east-long'] or [0]
     top = max(R.values(), key=lambda r: (r['score'], r['fl'])); low = sorted(R.values(), key=lambda r: (r['score'], r['fl']))[:2]
     faq = [(lg.p('rh_q1'), lg.p('rh_a1', c=lg.cn(top['name']), D=lg.fnum(abs(top['D'])), fl=lg.fnum(top['fl']), s=top['score'], n=top['noplan'])),
            (lg.p('rh_q2'), lg.p('rh_a2', c1=lg.cn(low[0]['name']), c2=lg.cn(low[1]['name']), D1=lg.fnum(abs(low[0]['D'])), D2=lg.fnum(abs(low[1]['D'])), s1=low[0]['score'], s2=low[1]['score'])),
@@ -423,7 +450,7 @@ def build_routes_hub(lg):
 <section class="section" id="domande" aria-labelledby="domande-h"><div class="wrap prose">{faq_html(faq, lg.p('rh_faq_h'))}</div></section>'''
     url = BASE + ALL_PAGES['routes'][lg.code]
     ld = [faq_ld(faq), {"@type": "CollectionPage", "url": url, "name": lg.p('rh_h1'), "dateModified": TODAY, "isPartOf": {"@id": BASE + lg.pre + "#sito"}, "speakable": speak("#definizione", "#domande h3"),
-           "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": BASE + ALL_PAGES['route:' + d[1]][lg.code], "name": lg.p('jl_city', c=lg.cn(d[0]))} for i, d in enumerate(DESTS)]}}, cld]
+           "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": BASE + ALL_PAGES['route:' + d[1]][lg.code], "name": lg.p('jl_city', c=lg.cn(d[0]))} for i, d in enumerate(lg.dests)]}}, cld]
     page(lg, 'routes', lg.p('rh_title'), lg.p('rh_desc'), body, 'rotte', ld)
 
 def build_rank(lg):
@@ -434,7 +461,7 @@ def build_rank(lg):
     for i, r in enumerate(rows):
         slug = DEST_BY[r['name']][1]
         bars = ''.join(f'<i class="{"on" if k < r["score"] else ""}"></i>' for k in range(10))
-        tr += f'''<tr><td class="mono">{i + 1}</td><td><a href="{lg.u(lg.path_route(slug))}">{E(lg.cn(r['name']))}</a></td><td><span class="pill {'e' if r['east'] else 'w'}">{lg.sgn(r['dw'])} h · {E(P['dir_east'] if r['east'] else P['dir_west'])}</span></td><td class="mono">~{lg.fnum(r['fl'])} h</td><td class="mono">{r['noplan']} / {r['days0']}</td><td><span class="bar10" role="img" aria-label="{E(lg.f(lg.L['ui']['meter_aria'], s=r['score']))}">{bars}</span> <span class="mono">{r['score']}</span></td><td class="mono">{r['arr'][0]}–{r['arr'][1]}</td><td class="mono">{fh(r['dep'][0])}–{fh(r['dep'][1])}</td></tr>'''
+        tr += f'''<tr><td class="mono">{i + 1}</td><td><a href="{lg.u(lg.path_route(slug))}">{E(lg.cn(r['name']))}</a></td><td><span class="pill {'e' if r['east'] else 'w'}">{lg.sgn(r['dw'])} h · {E(P['dir_east'] if r['east'] else P['dir_west'])}</span></td><td class="mono">~{lg.fnum(r['fl'])} h</td><td class="mono">{r['noplan']} / {r['days0']}</td><td><span class="bar10" role="img" aria-label="{E(lg.f(lg.L['ui']['meter_aria'], s=r['score']))}">{bars}</span> <span class="mono">{r['score']}</span></td><td class="mono">{lg.hr(r['arr'][0])}–{lg.hr(r['arr'][1])}</td><td class="mono">{fh(r['dep'][0])}–{fh(r['dep'][1])}</td></tr>'''
     top = rows[0]; tk, bk, sy = R['Tokyo'], R['Bangkok'], R['Sydney']
     faq = [(P['k_q1'], P['k_a1']),
            (P['k_q2'], lg.p('k_a2', c1=lg.cn('Tokyo'), a1=fh(tk['dep'][0]), b1=fh(tk['dep'][1]), c2=lg.cn('Bangkok'), a2=fh(bk['dep'][0]), b2=fh(bk['dep'][1]))),
@@ -520,10 +547,12 @@ if __name__ == '__main__':
     shutil.copytree(os.path.join(ROOT, 'src', 'assets'), os.path.join(OUT, 'assets'))
     for f in ('favicon.svg', 'og.png'): shutil.copy(os.path.join(ROOT, f), os.path.join(OUT, f))
     langs = [Lang(c) for c in LANGS]
+    for lg in langs: LINFO[lg.code] = (lg.L['label'], lg.hl, lg.L['short'])
     collect_paths(langs)
     for lg in langs:
+        lg.compute()
         build_home(lg)
-        for d in DESTS: build_route(lg, d)
+        for d in lg.dests: build_route(lg, d)
         build_routes_hub(lg); build_rank(lg); build_tools(lg); build_guides(lg)
     sm = ''.join(f'  <url><loc>{BASE}{p}</loc><lastmod>{TODAY}</lastmod></url>\n' for p in SITEMAP)
     open(os.path.join(ROOT, 'site', 'sitemap-jet-lag.txt'), 'w').write(sm)

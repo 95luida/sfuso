@@ -2,13 +2,13 @@
 
 **Rimettiti in fuso.** Sfuso è un sito statico gratuito che crea un piano anti jet lag giorno per giorno: quando dormire, quando cercare o evitare la luce, fino a quando bere caffè, quando dormire in aereo, con esportazione nel calendario (.ics). Tutto il calcolo avviene nel browser: nessun dato viene inviato a un server.
 
-👉 **https://www.dalpuntoweb.it/jet-lag/** — anche in [English](https://www.dalpuntoweb.it/jet-lag/en/), [Español](https://www.dalpuntoweb.it/jet-lag/es/), [Français](https://www.dalpuntoweb.it/jet-lag/fr/) e [Deutsch](https://www.dalpuntoweb.it/jet-lag/de/).
+👉 **https://www.dalpuntoweb.it/jet-lag/** — anche in [English (UK)](https://www.dalpuntoweb.it/jet-lag/en/), [English (US)](https://www.dalpuntoweb.it/jet-lag/en-us/), [Español](https://www.dalpuntoweb.it/jet-lag/es/), [Español (México)](https://www.dalpuntoweb.it/jet-lag/es-mx/), [Português (Brasil)](https://www.dalpuntoweb.it/jet-lag/pt-br/), [Français](https://www.dalpuntoweb.it/jet-lag/fr/), [Français (Canada)](https://www.dalpuntoweb.it/jet-lag/fr-ca/) e [Deutsch](https://www.dalpuntoweb.it/jet-lag/de/).
 
-*A free, static jet lag planner: day-by-day sleep, light and caffeine schedule, in-flight sleep and calendar export. Everything runs in the browser. Available in 5 languages.*
+*A free, static jet lag planner: day-by-day sleep, light and caffeine schedule, in-flight sleep and calendar export. Everything runs in the browser. Available in 9 languages and regions.*
 
 ## Cosa c'è
 - **Calcolatore** con quadranti delle 24 ore per ogni giorno, voto di gravità, giudizio sull'orario di arrivo, modalità viaggio breve (1-3 giorni) ed esportazione `.ics`.
-- **24 pagine meta** per lingua, con partenza dalla città di casa (Milano, Londra, Madrid, Parigi, Francoforte), fuso in inverno e in estate e orario di arrivo migliore.
+- **24 pagine meta** per lingua, con partenza dalla città di casa (Milano, Londra, Madrid, Parigi, Francoforte, New York, Città del Messico, San Paolo, Montréal), fuso in inverno e in estate e orario di arrivo migliore. Le versioni americane hanno mete in Europa, Asia e Oceania; l'inglese USA usa gli orari a 12 ore.
 - **Classifica** delle rotte con più jet lag.
 - **4 strumenti**: convertitore di fusi orari, pianificatore di riunioni, calcolatore del sonno, ora nel mondo con la zona di notte in tempo reale sulla mappa.
 - **6 guide**: bambini, voli notturni, viaggi di lavoro, melatonina e caffè, rientro a casa, luce.
@@ -22,8 +22,8 @@ Il piano dà indicazioni generali e non sostituisce il parere di un medico.
 ```
 src/
   assets/      core.js (fusi, modello, mappa, .ics) · calc.js · tools.js · site.js · style.css · map.svg
-  i18n/        it.json en.json es.json fr.json de.json (testi, indirizzi, nomi delle città)
-  cities.py    città con fuso IANA e coordinate, mete con pagina propria
+  i18n/        it en es fr de en-us es-mx pt-br fr-ca .json (testi, indirizzi, nomi delle città)
+  cities.py    città con fuso IANA e coordinate, mete per l'Europa (DESTS) e per le Americhe (DESTS_AM)
   guide*.json  guide per lingua
 tools/
   build.py     genera site/jet-lag/ in tutte le lingue (hreflang, sitemap, JSON-LD)

@@ -71,3 +71,16 @@ DESTS = [
     ("Hong Kong", "hong-kong", "Cina", "città"), ("Tokyo", "tokyo", "Giappone", "città"),
     ("Seul", "seul", "Corea del Sud", "città"), ("Sydney", "sydney", "Australia", "città e mare"),
 ]
+
+# mete per chi parte dalle Americhe: si prendono le prime 24 escluse la città di casa e quelle a meno di 2 ore di fuso
+DESTS_AM = [
+    ("Londra", "london", "Regno Unito", "città"), ("Parigi", "paris", "Francia", "città"), ("Roma", "rome", "Italia", "città"),
+    ("Milano", "milan", "Italia", "città"), ("Madrid", "madrid", "Spagna", "città"), ("Barcellona", "barcelona", "Spagna", "città e mare"),
+    ("Lisbona", "lisbon", "Portogallo", "città"), ("Amsterdam", "amsterdam", "Paesi Bassi", "città"), ("Dublino", "dublin", "Irlanda", "città"),
+    ("Berlino", "berlin", "Germania", "città"), ("Atene", "athens", "Grecia", "città e mare"), ("Istanbul", "istanbul", "Turchia", "città"),
+    ("Marrakech", "marrakech", "Marocco", "città"), ("Città del Capo", "cape-town", "Sudafrica", "città e mare"), ("Dubai", "dubai", "Emirati Arabi Uniti", "città e mare"),
+    ("Maldive", "maldive", "Maldive", "mare"), ("Tokyo", "tokyo", "Giappone", "città"), ("Seul", "seul", "Corea del Sud", "città"),
+    ("Bangkok", "bangkok", "Thailandia", "città e mare"), ("Bali", "bali", "Indonesia", "mare"), ("Singapore", "singapore", "Singapore", "città"),
+    ("Hong Kong", "hong-kong", "Cina", "città"), ("Sydney", "sydney", "Australia", "città e mare"), ("Honolulu", "honolulu", "Stati Uniti", "mare"),
+    ("Los Angeles", "los-angeles", "Stati Uniti", "città"), ("New York", "new-york", "Stati Uniti", "città"), ("Rio de Janeiro", "rio-de-janeiro", "Brasile", "mare e città"),
+]
