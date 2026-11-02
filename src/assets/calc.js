@@ -57,23 +57,23 @@ const actions=()=>`<div class="acts"><button type="button" class="btn main" id="
 const state={plan:null,showFull:false};
 function render(plan){
   ringId=0;
-  const {o,r}=plan,D=r.d,ahead=Math.abs(D),out=[];
+  const {o,r}=plan,D=r.raw,ahead=Math.abs(D),out=[];
   const dirTxt=r.dir==='none'?t('same_tz'):t(D>0?'ahead':'behind',{b:esc(o.dest.name),a:esc(o.home.name),h:fdur(ahead)});
-  const how=r.dir==='advance'?t('how_adv'):r.dir==='delay'&&r.why==='east-long'?t('how_east_long',{T:fdur(r.T),D:fdur(ahead)}):r.dir==='delay'?t('how_del'):'';
+  const how=r.dir==='advance'?t('how_adv'):r.dir==='delay'&&(r.why==='east-long'||D>0)?t('how_east_long',{T:fdur(r.T),D:fdur(ahead)}):r.dir==='delay'?t('how_del'):'';
   let meter='';for(let i=1;i<=10;i++)meter+=`<i class="${i<=r.score?'on':''}"></i>`;
   out.push(`<h2 class="plan-h">${esc(t('plan_title',{a:o.home.name,b:o.dest.name}))}</h2>`);
   out.push(`<div class="verdict"><div class="map-w">${SF.mapSvg({fit:true,route:[o.home,o.dest],label:t('route_label',{a:o.home.name,b:o.dest.name})})}</div><div class="txt"><div class="big">${D>0?'+':D<0?'−':''}${SF.fnum(ahead)}<small>${t('hours_word')}</small></div>
     <div class="sev">${esc(t('sev',{level:r.dir==='none'?(SF.T._none||''):r.level,s:r.score}))}</div><div class="meter" role="img" aria-label="${esc(t('meter_aria',{s:r.score}))}">${meter}</div><p>${dirTxt}</p><p>${how}</p></div></div>`);
   out.push(`<div class="stats"><div class="stat card"><b>${r.dir==='none'?0:r.after}</b><span>${t('stat_after')}</span></div><div class="stat card"><b>${r.dir==='none'?0:r.noPlan}</b><span>${t('stat_noplan')}</span></div><div class="stat card"><b>${fdur(r.flightH)}</b><span>${t('stat_flight')}</span></div><div class="stat card"><b>${r.pre?fdur(r.pre):'—'}</b><span>${t('stat_pre')}</span></div></div>`);
   if(r.dir==='none'){$('risultato').innerHTML=out.join('');dock(plan);return;}
-  if(o.stay===3&&ahead>=3&&!state.showFull){
-    out.push(`<div class="note good"><h3>${esc(t('short_t',{a:o.home.name}))}</h3><p>${t('short_p',{b:esc(o.dest.name),w1:fh(o.wake+D)+'–'+fh(o.bed+D),w2:fh(o.wake+2+D)+'–'+fh(o.wake+10+D),s:fh(o.bed+D)+'–'+fh(o.wake+D)})}</p><button type="button" class="lnk" id="full">${t('short_btn')}</button></div>`);
+  if(o.stay===3&&Math.abs(r.d)>=3&&!state.showFull){
+    out.push(`<div class="note good"><h3>${esc(t('short_t',{a:o.home.name}))}</h3><p>${t('short_p',{b:esc(o.dest.name),w1:fh(o.wake+r.d)+'–'+fh(o.bed+r.d),w2:fh(o.wake+2+r.d)+'–'+fh(o.wake+10+r.d),s:fh(o.bed+r.d)+'–'+fh(o.wake+r.d)})}</p><button type="button" class="lnk" id="full">${t('short_btn')}</button></div>`);
     out.push(actions());
     $('risultato').innerHTML=out.join('');bind(plan);dock(plan);return;
   }
   const an=SF.arrivalNote(plan);
   out.push(`<div class="note ${an.cls}"><h3>${esc(an.t)}</h3><p>${esc(an.p)}</p></div>`);
-  if(ahead<=2)out.push(`<div class="note"><h3>${t('light_t')}</h3><p>${esc(t('light_p',{h:fdur(ahead)}))}</p></div>`);
+  if(Math.abs(r.d)<=2)out.push(`<div class="note"><h3>${t('light_t')}</h3><p>${esc(t('light_p',{h:fdur(ahead)}))}</p></div>`);
   out.push(actions());
   out.push(`<div class="legend" aria-hidden="true"><span><i class="dot d-sleep"></i>${t('lg_sleep')}</span><span><i class="dot d-sun"></i>${t('lg_seek')}</span><span><i class="dot d-avoid"></i>${t('lg_avoid')}</span><span><i class="dot d-coffee"></i>${t('lg_coffee')}</span>${o.mel&&r.dir==='advance'?`<span><i class="dot d-mel"></i>${t('lg_mel')}</span>`:''}</div><div class="days">`);
   let preN=plan.days.filter(x=>x.kind==='pre').length,di=0;
@@ -102,7 +102,7 @@ function bind(plan){
 }
 function dock(plan){
   const r=plan.r,s=$('dock-s');if(!s)return;
-  s.innerHTML=r.dir==='none'?t('dock_same'):t('dock',{d:(r.d>0?'+':'−')+SF.fnum(Math.abs(r.d)),level:esc(cap(r.level)),n:r.after});
+  s.innerHTML=r.dir==='none'?t('dock_same'):t('dock',{d:(r.raw>0?'+':'−')+SF.fnum(Math.abs(r.raw)),level:esc(cap(r.level)),n:r.after});
 }
 
 /* ---------- campi città ---------- */
@@ -142,7 +142,9 @@ function defaults(){
   const dep=SF.toUtc($('p').value,home.tz);
   $('r').value=SF.localStr(dep+SF.guessHours(home,dest,dep)*H,dest.tz);
 }
-let touched=!!location.search,userTimes=false,lastKey='';
+/* i parametri utm_* dei link condivisi non contano come piano già compilato e restano nell'indirizzo */
+const QS=new URLSearchParams(location.search);
+let touched=['da','a','p','r'].some(k=>QS.has(k)),userTimes=false,lastKey='';
 function readUrl(){
   const q=new URLSearchParams(location.search);
   $('da').value=q.get('da')||PRE.da;$('a').value=q.get('a')||PRE.a;
@@ -156,6 +158,7 @@ function readUrl(){
 function writeUrl(force){
   if(!touched&&!force)return;
   const q=new URLSearchParams(),st=sleepTimes();
+  QS.forEach((v,k)=>{if(/^utm_/.test(k))q.set(k,v);});
   q.set('da',$('da').value.trim());q.set('a',$('a').value.trim());q.set('p',$('p').value);q.set('r',$('r').value);
   q.set('l',st.l);q.set('s',st.s);q.set('g',segVal('prep'));q.set('t',segVal('stay'));
   if($('m').checked)q.set('m','1');

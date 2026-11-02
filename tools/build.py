@@ -391,9 +391,9 @@ def build_home(lg):
 
 def build_route(lg, d):
     P = lg.P; name, slug, country, _ = d; r = lg.R[name]; c = lg.cn(name)
-    way = P['way_ahead'] if r['D'] > 0 else P['way_behind']
+    way = P['way_ahead'] if r['dw'] > 0 else P['way_behind']   # differenza vera dell'orologio, anche oltre le 12 ore
     seas = lg.p('seas_diff', w=lg.fnum(abs(r['dw'])), s=lg.fnum(abs(r['ds'])), way=way) if abs(r['ds']) != abs(r['dw']) else lg.p('seas_same', w=lg.fnum(abs(r['dw'])), way=way)
-    if r['why'] == 'east-long': how = lg.p('r_how_long', D=lg.fnum(abs(r['D'])), T=lg.fnum(r['T']))
+    if r['why'] == 'east-long' or (r['dw'] > 0 and r['D'] < 0): how = lg.p('r_how_long', D=lg.fnum(abs(r['dw'])), T=lg.fnum(r['T']))
     elif r['dir'] == 'advance': how = lg.p('r_how_adv', c=c)
     else: how = lg.p('r_how_del', c=c)
     pre = lg.p('r_pre_adv' if r['dir'] == 'advance' else 'r_pre_del', n=r['days2'])

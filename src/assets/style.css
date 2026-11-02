@@ -366,3 +366,4 @@ footer.site address{font-style:normal}
 .tool-c b,.dest b,.feat h3,h1,h2{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
 .seg{grid-auto-columns:minmax(0,1fr)}
 .seg button{min-width:0;-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
+.clock .t{white-space:nowrap;font-size:clamp(1.5rem,2.4vw,2rem)}

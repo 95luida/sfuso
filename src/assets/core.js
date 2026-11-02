@@ -81,7 +81,8 @@ SF.compute=o=>{
   const score=dir==='none'?0:Math.max(1,Math.min(10,Math.round(T/(dir==='advance'?1:1.5)*0.85+(flightH>10?1:0))));
   const LV=SF.T._levels||['lieve','moderato','forte','molto forte'];
   const level=LV[score<=2?0:score<=4?1:score<=7?2:3];
-  return {d,dir,T,why,rate,sign,pre,after,noPlan,score,level,flightH};
+  /* raw = differenza vera dell'orologio (può superare 12 ore se si passa la linea del cambio di data) */
+  return {d,raw:off,dir,T,why,rate,sign,pre,after,noPlan,score,level,flightH};
 };
 const lightFor=(cbt,dir)=>dir==='advance'?{seek:[cbt,cbt+5],avoid:[cbt-4,cbt]}:{seek:[cbt-9,cbt],avoid:[cbt,cbt+4]};
 const dayModel=(bed,wake,cbt,dir,travelUntil)=>{
