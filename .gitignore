@@ -1,0 +1,9 @@
+# generati da tools/build.py o da vecchie versioni
+site/
+build/
+*.zip
+index.html
+index-v1.html
+src/i18n/BRIEF.md
+.DS_Store
+__pycache__/
